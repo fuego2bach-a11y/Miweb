@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Salón Secreto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #1b1b1b, #2b0000);
+            color: #f5e6c8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .caja {
+            background: rgba(0,0,0,0.7);
+            padding: 40px;
+            border: 2px solid #c0392b;
+            border-radius: 10px;
+            width: 300px;
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            margin-top: 15px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #c0392b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e74c3c;
+        }
+
+        .error {
+            margin-top: 15px;
+            color: #ff4d4d;
+        }
+
+        a {
+            display: block;
+            margin-top: 15px;
+            color: #f5e6c8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="caja">
+        <h2>🔐 Salón Secreto</h2>
+        <p>Introduce el código para entrar</p>
+
+        <input type="password" id="clave" placeholder="Código">
+
+        <br>
+        <button onclick="verificar()">Entrar</button>
+
+        <div id="mensaje" class="error"></div>
+    </div>
+
+    <script>
+        function verificar() {
+            let input = document.getElementById("clave").value;
+
+            if (btoa(input) === "MTMyNA==") {
+                window.location.href = "japon.html";
+            } else {
+                document.getElementById("mensaje").innerHTML =
+                    "vuelve a intentarlo<br><a href='index.html'>Volver a la página principal</a>";
+            }
+        }
+    </script>
+
+</body>
+</html>

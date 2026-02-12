@@ -1,71 +1,175 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Sala Imperial</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Sala Imperial</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Noto Serif JP', serif;
-            background: linear-gradient(to bottom, #ffffff, #f2e6d9);
-            color: #2c2c2c;
-            text-align: center;
-        }
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family:'Noto Serif JP', serif;
+    background:linear-gradient(to bottom,#ffffff,#f3e9dc);
+    color:#2c2c2c;
+    text-align:center;
+    overflow-x:hidden;
+}
 
-        header {
-            background-color: #b22222;
-            color: white;
-            padding: 40px;
-        }
+header{
+    background:#b22222;
+    color:white;
+    padding:40px;
+    animation:fadeIn 2s ease-in;
+}
 
-        section {
-            padding: 50px 20px;
-        }
+section{
+    padding:40px 20px;
+}
 
-        img {
-            width: 380px;
-            margin-top: 20px;
-            border-radius: 12px;
-            box-shadow: 0 0 25px rgba(0,0,0,0.5);
-        }
+img{
+    width:380px;
+    border-radius:12px;
+    box-shadow:0 0 25px rgba(0,0,0,0.5);
+    margin-top:20px;
+}
 
-        a {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 10px 20px;
-            background-color: #b22222;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
+button{
+    margin-top:20px;
+    padding:10px 20px;
+    background:#b22222;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
 
-        a:hover {
-            background-color: #8b0000;
-        }
-    </style>
+button:hover{
+    background:#8b0000;
+}
+
+.resultado{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+a{
+    display:inline-block;
+    margin-top:30px;
+    padding:10px 20px;
+    background:#b22222;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+a:hover{
+    background:#8b0000;
+}
+
+/* Animación pétalos */
+.petalo{
+    position:fixed;
+    top:-50px;
+    width:20px;
+    height:20px;
+    background:pink;
+    border-radius:50%;
+    opacity:0.7;
+    animation:caer linear infinite;
+}
+
+@keyframes caer{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+    }
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+</style>
 </head>
 
 <body>
 
-    <header>
-        <h1>🏯 Sala Imperial Japonesa</h1>
-    </header>
+<header>
+<h1>🏯 Sala Imperial Japonesa</h1>
+<p>Has cruzado el portal del norte y llegado al lejano oriente</p>
+</header>
 
-    <section>
-        <p>Has cruzado el portal del norte y llegado al lejano oriente.</p>
-        <p>Honor, disciplina y equilibrio te rodean.</p>
+<section>
 
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV-TtRbwhDr-m_Kd9L_SavUobzrNaM-09JnQ&s"
-             alt="Escenario Japonés">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV-TtRbwhDr-m_Kd9L_SavUobzrNaM-09JnQ&s">
 
-        <br>
-        <a href="index.html">Volver al Reino Vikingo</a>
-    </section>
+<h2>📝 Cuestionario sobre Japón</h2>
+
+<div>
+<p><strong>1. ¿Cuál es la capital de Japón?</strong></p>
+<input type="radio" name="p1" value="a"> Tokio<br>
+<input type="radio" name="p1" value="b"> Kioto<br>
+
+<p><strong>2. ¿Qué flor es símbolo tradicional de Japón?</strong></p>
+<input type="radio" name="p2" value="a"> Rosa<br>
+<input type="radio" name="p2" value="b"> Cerezo (Sakura)<br>
+
+<p><strong>3. ¿Cómo se llaman los antiguos guerreros japoneses?</strong></p>
+<input type="radio" name="p3" value="a"> Samuráis<br>
+<input type="radio" name="p3" value="b"> Ninjas<br>
+
+<button onclick="comprobar()">Comprueba tus respuestas</button>
+
+<div id="resultado" class="resultado"></div>
+
+</div>
+
+<a href="index.html">Volver al Reino Vikingo</a>
+
+</section>
+
+<!-- Música japonesa suave -->
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=japanese-traditional-110624.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+/* Cuestionario */
+function comprobar(){
+    let puntos=0;
+
+    if(document.querySelector('input[name="p1"]:checked')?.value==="a") puntos++;
+    if(document.querySelector('input[name="p2"]:checked')?.value==="b") puntos++;
+    if(document.querySelector('input[name="p3"]:checked')?.value==="a") puntos++;
+
+    let resultado=document.getElementById("resultado");
+
+    if(puntos===3){
+        resultado.innerHTML="🏆 Honor Imperial. Has acertado todas.";
+    }else{
+        resultado.innerHTML="Has acertado "+puntos+" de 3.";
+    }
+}
+
+/* Generador de pétalos */
+function crearPetalo(){
+    const petalo=document.createElement("div");
+    petalo.classList.add("petalo");
+    petalo.style.left=Math.random()*100+"vw";
+    petalo.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(petalo);
+
+    setTimeout(()=>{petalo.remove();},6000);
+}
+
+setInterval(crearPetalo,400);
+
+</script>
 
 </body>
 </html>

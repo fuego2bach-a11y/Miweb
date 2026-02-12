@@ -37,28 +37,36 @@
         }
 
         section {
-            padding: 20px;
+            padding: 30px;
         }
 
         button {
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 15px 30px;
+            font-size: 18px;
             background-color: #4CAF50;
             color: white;
             border: none;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 8px;
+            margin-top: 15px;
         }
 
         button:hover {
             background-color: #45a049;
         }
 
+        #mensajeSecreto {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: darkred;
+        }
+
         footer {
             background-color: #222;
             color: white;
             padding: 15px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -78,8 +86,11 @@
     </nav>
 
     <section>
-        <h2>Contenido Principal</h2>
-        <p>Esta es una página web sencilla creada con HTML, CSS y un poco de JavaScript.</p>
+        <h2>🎮 Videojuego de Clics</h2>
+        <p>Puntuación: <span id="puntos">0</span></p>
+        <button onclick="sumarPunto()">¡Haz clic!</button>
+
+        <div id="mensajeSecreto"></div>
     </section>
 
     <footer>
@@ -87,6 +98,22 @@
     </footer>
 
     <script src="seguridad.js"></script>
+
+    <script>
+        let puntos = 0;
+        let codigoMostrado = false;
+
+        function sumarPunto() {
+            puntos++;
+            document.getElementById("puntos").textContent = puntos;
+
+            if (puntos >= 10 && !codigoMostrado) {
+                document.getElementById("mensajeSecreto").innerHTML =
+                    "🔓 ¡Has desbloqueado el código secreto!<br><br><strong>Código: 1324</strong>";
+                codigoMostrado = true;
+            }
+        }
+    </script>
 
 </body>
 </html>
